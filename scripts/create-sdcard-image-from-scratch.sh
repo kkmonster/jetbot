@@ -2,7 +2,7 @@
 
 set -e
 
-password='jetbot'
+password='zxc123'
 
 # Record the time this script starts
 date
@@ -19,7 +19,7 @@ sudo usermod -aG i2c $USER
 
 # Make swapfile
 cd 
-sudo fallocate -l 4G /var/swapfile
+sudo fallocate -l 8G /var/swapfile
 sudo chmod 600 /var/swapfile
 sudo mkswap /var/swapfile
 sudo swapon /var/swapfile
@@ -46,27 +46,27 @@ sudo pip3 install -U pip testresources setuptools numpy==1.16.1 future==0.17.1 m
 # TF-1.15
 sudo pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v44 'tensorflow<2'
 
-# Install the pre-built PyTorch pip wheel 
-echo -e "\e[45m Install the pre-built PyTorch pip wheel  \e[0m"
-cd
-wget -N https://nvidia.box.com/shared/static/yr6sjswn25z7oankw8zy1roow9cy5ur1.whl -O torch-1.6.0rc2-cp36-cp36m-linux_aarch64.whl
-sudo apt-get install -y python3-pip libopenblas-base libopenmpi-dev 
-sudo -H pip3 install Cython
-sudo -H pip3 install numpy torch-1.6.0rc2-cp36-cp36m-linux_aarch64.whl 
+# # Install the pre-built PyTorch pip wheel 
+# echo -e "\e[45m Install the pre-built PyTorch pip wheel  \e[0m"
+# cd
+# wget -N https://nvidia.box.com/shared/static/yr6sjswn25z7oankw8zy1roow9cy5ur1.whl -O torch-1.6.0rc2-cp36-cp36m-linux_aarch64.whl
+# sudo apt-get install -y python3-pip libopenblas-base libopenmpi-dev 
+# sudo -H pip3 install Cython
+# sudo -H pip3 install numpy torch-1.6.0rc2-cp36-cp36m-linux_aarch64.whl 
 
-# Install torchvision package
-echo -e "\e[45m Install torchvision package \e[0m"
-cd
-git clone https://github.com/pytorch/vision
-cd vision
-#git checkout v0.4.0
-sudo -H python3 setup.py install
+# # Install torchvision package
+# echo -e "\e[45m Install torchvision package \e[0m"
+# cd
+# git clone https://github.com/pytorch/vision
+# cd vision
+# #git checkout v0.4.0
+# sudo -H python3 setup.py install
 
-# Install torch2trt
-cd $HOME
-git clone https://github.com/NVIDIA-AI-IOT/torch2trt
-cd torch2trt
-sudo python3 setup.py install
+# # Install torch2trt
+# cd $HOME
+# git clone https://github.com/NVIDIA-AI-IOT/torch2trt
+# cd torch2trt
+# sudo python3 setup.py install
 
 # Install traitlets (master, to support the unlink() method)
 echo -e "\e[48;5;172m Install traitlets \e[0m"
@@ -112,10 +112,10 @@ sudo python3 setup.py install
 
 # Install jetbot services
 cd jetbot/utils
-python3 create_stats_service.py
-sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service
-sudo systemctl enable jetbot_stats
-sudo systemctl start jetbot_stats
+# python3 create_stats_service.py
+# sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service
+# sudo systemctl enable jetbot_stats
+# sudo systemctl start jetbot_stats
 python3 create_jupyter_service.py
 sudo mv jetbot_jupyter.service /etc/systemd/system/jetbot_jupyter.service
 sudo systemctl enable jetbot_jupyter
@@ -134,15 +134,15 @@ sudo apt-get install -y \
 sudo -H pip3 install pyzmq
     
 
-# Optimize the system configuration to create more headroom
-sudo nvpmodel -m 0
-sudo systemctl set-default multi-user
-sudo systemctl disable nvzramconfig.service
+# # Optimize the system configuration to create more headroom
+# sudo nvpmodel -m 0
+# sudo systemctl set-default multi-user
+# sudo systemctl disable nvzramconfig.service
 
-# Copy JetBot notebooks to home directory
-cp -r ~/jetbot/notebooks ~/Notebooks
+# # Copy JetBot notebooks to home directory
+# cp -r ~/jetbot/notebooks ~/Notebooks
 
-echo -e "\e[42m All done! \e[0m"
+# echo -e "\e[42m All done! \e[0m"
 
-#record the time this script ends
-date
+# #record the time this script ends
+# date
