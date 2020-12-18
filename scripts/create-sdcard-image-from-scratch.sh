@@ -135,9 +135,9 @@ sudo -H pip3 install pyzmq
     
 
 # # Optimize the system configuration to create more headroom
-# sudo nvpmodel -m 0
-# sudo systemctl set-default multi-user
-# sudo systemctl disable nvzramconfig.service
+sudo nvpmodel -m 0
+sudo systemctl set-default multi-user
+sudo systemctl disable nvzramconfig.service
 
 # # Copy JetBot notebooks to home directory
 # cp -r ~/jetbot/notebooks ~/Notebooks
